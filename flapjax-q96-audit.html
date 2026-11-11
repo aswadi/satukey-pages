@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlapJax Treasury Outflow Audit — 2026-11-05 COT (Task Q96 / TSK-J1WYKT0H) | @aswadi (DarkShadeMoon)</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #131b2e;
+      --border: #26334d;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent2: #38bdf8;
+      --warn: #f43f5e;
+      --ok: #10b981;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 32px 16px;
+    }
+    .container { max-width: 1180px; margin: 0 auto; }
+    h1, h2, h3 { color: #fff; margin-top: 0; }
+    h1 { font-size: 1.85rem; border-bottom: 2px solid var(--border); padding-bottom: 12px; }
+    h2 { font-size: 1.35rem; margin-top: 28px; color: var(--accent); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      background: #0f1626;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .stat-value { font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #1a2540; color: #fff; font-weight: 600; }
+    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+    code, .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+      background: rgba(15, 23, 42, 0.75);
+      padding: 2px 5px;
+      border-radius: 4px;
+      word-break: break-all;
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .badge-warn { background: rgba(244,63,94,0.2); color: #fda4af; border: 1px solid var(--warn); padding: 2px 7px; border-radius: 4px; font-weight: 600; font-size: 0.78rem; }
+    .badge-ok { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid var(--ok); padding: 2px 7px; border-radius: 4px; font-weight: 600; font-size: 0.78rem; }
+    .badge-muted { background: rgba(148,163,184,0.15); color: #cbd5e1; border: 1px solid #475569; padding: 2px 7px; border-radius: 4px; font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>FlapJax Treasury Outflow &amp; First-BNB-Funder Audit — 2026-11-05 COT (Task Q96)</h1>
+
+  <div class="card">
+    <p><strong>Auditor Handle:</strong> <code>@aswadi</code> / <code>DarkShadeMoon</code><br>
+    <strong>Worker &amp; Bound BSC Wallet:</strong> <code>0xbBD270B71Bc4Dfe1a0ED599D7D4df562124d3162</code><br>
+    <strong>Taskmarket Reference:</strong> <code>TSK-J1WYKT0H</code> (Task ID <code>0x3f0d73474a8105ae496eceb3a9af4d33de9adee2bee1a2c455f7ae0b737db047</code> — FlapJax Series 3, Task Q96)<br>
+    <strong>Treasury Address (BSC):</strong> <a href="https://bscscan.com/address/0x7C34E9e21eE28A49Ff0b84B61774119E6633359f"><code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code></a><br>
+    <strong>FLAPJAX Token Contract (BEP-20, 18 Decimals):</strong> <a href="https://bscscan.com/token/0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df"><code>0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df</code></a><br>
+    <strong>Audited Day Window:</strong> <code>2026-11-05 00:00:00 COT</code> to <code>2026-11-05 23:59:59 COT</code> (<code>UTC-5</code> &rarr; <code>2026-11-05T05:00:00Z</code> to <code>2026-11-06T04:59:59Z</code>, Unix <code>1793854800</code> to <code>1793941199</code>)<br>
+    <strong>Highlighted Uncovered Receipt Checked in Full:</strong> <code>uncovered_tx=0x2d448c79b493547a58821305a4bc84e143146aa34a957762cb2909908693eb5d</code></p>
+  </div>
+
+  <div class="grid">
+    <div class="stat">
+      <div class="stat-label">First Block of 11-05 COT</div>
+      <div class="stat-value">131757035</div>
+      <div class="mono">2026-11-05 00:00:00 COT<br>(2026-11-05T05:00:00Z)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Last Block of 11-05 COT</div>
+      <div class="stat-value">131948985</div>
+      <div class="mono">2026-11-05 23:59:59 COT<br>(2026-11-06T04:59:59Z)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total Outflow Transfers</div>
+      <div class="stat-value">12 Transfers</div>
+      <div class="mono">All verified on BSC RPC</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total FLAPJAX Sent</div>
+      <div class="stat-value">950,000 FLAPJAX</div>
+      <div class="mono">950000000000000000000000 wei</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Distinct Recipients</div>
+      <div class="stat-value">10 Wallets</div>
+      <div class="mono">2 funded / 8 unfunded EOAs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Distinct Operators Implied</div>
+      <div class="stat-value">2 Funded (9 External Max)</div>
+      <div class="mono">1 Treasury-funded + 1 external funded + 8 zero-BNB EOAs</div>
+    </div>
+  </div>
+
+  <h2>1. Exact Day Block Boundaries (2026-11-05 COT / UTC-5)</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Boundary</th>
+          <th>BSC Block Number</th>
+          <th>Unix Timestamp</th>
+          <th>Time (UTC)</th>
+          <th>Time (COT / UTC-5)</th>
+          <th>Adjacent Boundary Proof</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>First Block of 2026-11-05 COT</strong></td>
+          <td><a href="https://bscscan.com/block/131757035"><code>131757035</code></a> (<code>0x7da742b</code>)</td>
+          <td><code>1793854800</code></td>
+          <td><code>2026-11-05T05:00:00.000Z</code></td>
+          <td><code>2026-11-05 00:00:00 COT</code></td>
+          <td>Preceding block <code>131757034</code> has timestamp <code>1793854799</code> (<code>2026-11-04 23:59:59 COT</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>Last Block of 2026-11-05 COT</strong></td>
+          <td><a href="https://bscscan.com/block/131948985"><code>131948985</code></a> (<code>0x7dd61f9</code>)</td>
+          <td><code>1793941199</code></td>
+          <td><code>2026-11-06T04:59:59.000Z</code></td>
+          <td><code>2026-11-05 23:59:59 COT</code></td>
+          <td>Following block <code>131948986</code> has timestamp <code>1793941200</code> (<code>2026-11-06 00:00:00 COT</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2. Complete List of Treasury FLAPJAX Outflows on 2026-11-05 COT</h2>
+  <div class="card">
+    <p>Queried directly from BSC via <code>eth_getLogs</code> across blocks <code>131757035</code>&ndash;<code>131948985</code> with:<br>
+    <code>address = 0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df</code>,<br>
+    <code>topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef</code> (<code>Transfer(address,address,uint256)</code>),<br>
+    <code>topic1 = 0x0000000000000000000000007c34e9e21ee28a49ff0b84b61774119e6633359f</code>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Transaction Hash</th>
+          <th>Block</th>
+          <th>Time (COT / UTC-5)</th>
+          <th>Time (UTC)</th>
+          <th>Recipient Address</th>
+          <th>Amount (18 Decimals)</th>
+          <th>Raw Base Units (Wei)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="https://bscscan.com/tx/0x4b6e312717b5d30f041794cd0ed0f548185297a8c424e26ad52a0b47ff407554"><code>0x4b6e312717b5d30f041794cd0ed0f548185297a8c424e26ad52a0b47ff407554</code></a></td>
+          <td><code>131821526</code></td>
+          <td><code>2026-11-05 08:03:50 COT</code></td>
+          <td><code>2026-11-05T13:03:50Z</code></td>
+          <td><a href="https://bscscan.com/address/0x56b40205e0f8cd49eecb253ae82a5308f45a1cf3"><code>0x56b40205e0f8cd49eecb253ae82a5308f45a1cf3</code></a></td>
+          <td><code>100,000.000000000000000000</code></td>
+          <td><code>100000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><a href="https://bscscan.com/tx/0xef06ea5093d61ef9e610845ef2cb95b2753e9d6f0eb3aa7b2ffbc1f3b5120394"><code>0xef06ea5093d61ef9e610845ef2cb95b2753e9d6f0eb3aa7b2ffbc1f3b5120394</code></a></td>
+          <td><code>131825493</code></td>
+          <td><code>2026-11-05 08:33:37 COT</code></td>
+          <td><code>2026-11-05T13:33:37Z</code></td>
+          <td><a href="https://bscscan.com/address/0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62"><code>0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><a href="https://bscscan.com/tx/0x738d6ba5e22842d8ed3cb778a1fffb673daf21d5ca13f8a02d73a133795f067f"><code>0x738d6ba5e22842d8ed3cb778a1fffb673daf21d5ca13f8a02d73a133795f067f</code></a></td>
+          <td><code>131825542</code></td>
+          <td><code>2026-11-05 08:33:59 COT</code></td>
+          <td><code>2026-11-05T13:33:59Z</code></td>
+          <td><a href="https://bscscan.com/address/0xfb200657f7266157a45dfcc6c09690726daa24e6"><code>0xfb200657f7266157a45dfcc6c09690726daa24e6</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><a href="https://bscscan.com/tx/0xdf20460c2568fd6b2ece799447f5a26cb797316992f34af0bc7673400dc0b23c"><code>0xdf20460c2568fd6b2ece799447f5a26cb797316992f34af0bc7673400dc0b23c</code></a></td>
+          <td><code>131825590</code></td>
+          <td><code>2026-11-05 08:34:20 COT</code></td>
+          <td><code>2026-11-05T13:34:20Z</code></td>
+          <td><a href="https://bscscan.com/address/0x3aeae5f742e34f94db19b6c494072957633fa7ca"><code>0x3aeae5f742e34f94db19b6c494072957633fa7ca</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a href="https://bscscan.com/tx/0x405c626c98826d9538c909d57f9d768f5a64737ea7cf5cf6d1e9cc7a3b29cd40"><code>0x405c626c98826d9538c909d57f9d768f5a64737ea7cf5cf6d1e9cc7a3b29cd40</code></a></td>
+          <td><code>131825635</code></td>
+          <td><code>2026-11-05 08:34:40 COT</code></td>
+          <td><code>2026-11-05T13:34:40Z</code></td>
+          <td><a href="https://bscscan.com/address/0x252dd866b4e34351d14d7239963979e0ef138765"><code>0x252dd866b4e34351d14d7239963979e0ef138765</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><a href="https://bscscan.com/tx/0xc51434276b9245df1c691eb426ae7e3520d0171e38c810b61c9a6602cabbe5ea"><code>0xc51434276b9245df1c691eb426ae7e3520d0171e38c810b61c9a6602cabbe5ea</code></a></td>
+          <td><code>131825681</code></td>
+          <td><code>2026-11-05 08:35:01 COT</code></td>
+          <td><code>2026-11-05T13:35:01Z</code></td>
+          <td><a href="https://bscscan.com/address/0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c"><code>0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><a href="https://bscscan.com/tx/0xe588d112d726b0c75acae3305138670c12d5f12e45db2afcb07d3941cfb30963"><code>0xe588d112d726b0c75acae3305138670c12d5f12e45db2afcb07d3941cfb30963</code></a></td>
+          <td><code>131826582</code></td>
+          <td><code>2026-11-05 08:41:47 COT</code></td>
+          <td><code>2026-11-05T13:41:47Z</code></td>
+          <td><a href="https://bscscan.com/address/0xac958f0925a31a2c3844179ab62f12d480baa76d"><code>0xac958f0925a31a2c3844179ab62f12d480baa76d</code></a></td>
+          <td><code>100,000.000000000000000000</code></td>
+          <td><code>100000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a href="https://bscscan.com/tx/0x555277d2d7004d13a8960e19256403716cf92b6f516e2e7c29fa32f4a11dcd7d"><code>0x555277d2d7004d13a8960e19256403716cf92b6f516e2e7c29fa32f4a11dcd7d</code></a></td>
+          <td><code>131826786</code></td>
+          <td><code>2026-11-05 08:43:18 COT</code></td>
+          <td><code>2026-11-05T13:43:18Z</code></td>
+          <td><a href="https://bscscan.com/address/0xac958f0925a31a2c3844179ab62f12d480baa76d"><code>0xac958f0925a31a2c3844179ab62f12d480baa76d</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><a href="https://bscscan.com/tx/0x75e5c341531767fa0976853cd09e752378fc7bbb8f7d711ca8c21da6cc0a9946"><code>0x75e5c341531767fa0976853cd09e752378fc7bbb8f7d711ca8c21da6cc0a9946</code></a></td>
+          <td><code>131832752</code></td>
+          <td><code>2026-11-05 09:28:05 COT</code></td>
+          <td><code>2026-11-05T14:28:05Z</code></td>
+          <td><a href="https://bscscan.com/address/0xee0821be193086fe6648b8051e39510ac95b358f"><code>0xee0821be193086fe6648b8051e39510ac95b358f</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a href="https://bscscan.com/tx/0x6361dbfa0fe141a51fdabe0577b52d963b246f65bad8f929a3d46058af7d9ab7"><code>0x6361dbfa0fe141a51fdabe0577b52d963b246f65bad8f929a3d46058af7d9ab7</code></a></td>
+          <td><code>131840577</code></td>
+          <td><code>2026-11-05 10:26:47 COT</code></td>
+          <td><code>2026-11-05T15:26:47Z</code></td>
+          <td><a href="https://bscscan.com/address/0xa4c86f4e9d9ec8990f843aa49470083cece5f908"><code>0xa4c86f4e9d9ec8990f843aa49470083cece5f908</code></a></td>
+          <td><code>250,000.000000000000000000</code></td>
+          <td><code>250000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td><strong>11 (Uncovered Receipt)</strong></td>
+          <td><a href="https://bscscan.com/tx/0x2d448c79b493547a58821305a4bc84e143146aa34a957762cb2909908693eb5d"><code>0x2d448c79b493547a58821305a4bc84e143146aa34a957762cb2909908693eb5d</code></a></td>
+          <td><code>131840640</code></td>
+          <td><code>2026-11-05 10:27:15 COT</code></td>
+          <td><code>2026-11-05T15:27:15Z</code></td>
+          <td><a href="https://bscscan.com/address/0xa4c86f4e9d9ec8990f843aa49470083cece5f908"><code>0xa4c86f4e9d9ec8990f843aa49470083cece5f908</code></a></td>
+          <td><code>300,000.000000000000000000</code></td>
+          <td><code>300000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><a href="https://bscscan.com/tx/0x5ff4d0e5087d5712460da3c0d91b59603a87604d9233610f709697bae217d155"><code>0x5ff4d0e5087d5712460da3c0d91b59603a87604d9233610f709697bae217d155</code></a></td>
+          <td><code>131841529</code></td>
+          <td><code>2026-11-05 10:33:55 COT</code></td>
+          <td><code>2026-11-05T15:33:55Z</code></td>
+          <td><a href="https://bscscan.com/address/0xa15c58e7008fc7a0331cfcc86a28af99fd21b93c"><code>0xa15c58e7008fc7a0331cfcc86a28af99fd21b93c</code></a></td>
+          <td><code>25,000.000000000000000000</code></td>
+          <td><code>25000000000000000000000</code></td>
+        </tr>
+        <tr>
+          <td colspan="6"><strong>TOTAL SENT ACROSS 12 TRANSFERS (10 DISTINCT RECIPIENTS)</strong></td>
+          <td><strong><code>950,000.000000000000000000</code> FLAPJAX</strong></td>
+          <td><strong><code>950000000000000000000000</code></strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. First BNB Funder Lookup for Treasury &amp; All 10 Distinct Recipients</h2>
+  <div class="card">
+    <p>Using archive state binary search (<code>eth_getBalance(address, block)</code> and <code>eth_getTransactionCount(address, block)</code> from genesis block <code>1</code> through current head), we located the exact block and transaction where the Treasury and each of the 10 distinct recipients first received native BNB:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Wallet Role / Recipient</th>
+          <th>Total FLAPJAX (11-05 COT)</th>
+          <th>First BNB Funder Address</th>
+          <th>First BNB Funding Tx Hash</th>
+          <th>Funding Block &amp; Time (COT)</th>
+          <th>BNB Value Funded</th>
+          <th>Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FlapJax Treasury</strong><br><a href="https://bscscan.com/address/0x7C34E9e21eE28A49Ff0b84B61774119E6633359f"><code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code></a></td>
+          <td>Sender (-950,000)</td>
+          <td><a href="https://bscscan.com/address/0x5ba434b40be6cfc7033bf8d4545320fa609a4268"><code>0x5ba434b40be6cfc7033bf8d4545320fa609a4268</code></a></td>
+          <td><a href="https://bscscan.com/tx/0xe0f7aeeedd38558ba63a596b8eb6b73e53af63d6282fc3e370160f3b2109bfd0"><code>0xe0f7aeeedd38558ba63a596b8eb6b73e53af63d6282fc3e370160f3b2109bfd0</code></a></td>
+          <td>Block <code>123473817</code><br><code>2026-09-22 20:03:46 COT</code></td>
+          <td><code>0.12638071 BNB</code><br>(<code>126380710000000000</code> wei)</td>
+          <td><span class="badge-ok">Treasury Root</span></td>
+        </tr>
+        <tr>
+          <td>1. <a href="https://bscscan.com/address/0xfb200657f7266157a45dfcc6c09690726daa24e6"><code>0xfb200657f7266157a45dfcc6c09690726daa24e6</code></a><br>(Tx #3)</td>
+          <td><code>25,000</code></td>
+          <td><a href="https://bscscan.com/address/0x7C34E9e21eE28A49Ff0b84B61774119E6633359f"><code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code></a><br><strong>(FLAPJAX TREASURY)</strong></td>
+          <td><a href="https://bscscan.com/tx/0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7"><code>0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7</code></a></td>
+          <td>Block <code>126835408</code><br><code>2026-10-10 08:25:31 COT</code></td>
+          <td><code>0.0005 BNB</code><br>(<code>500000000000000</code> wei)</td>
+          <td><span class="badge-warn">Funded by Treasury</span></td>
+        </tr>
+        <tr>
+          <td>2. <a href="https://bscscan.com/address/0xa15c58e7008fc7a0331cfcc86a28af99fd21b93c"><code>0xa15c58e7008fc7a0331cfcc86a28af99fd21b93c</code></a><br>(Tx #12)</td>
+          <td><code>25,000</code></td>
+          <td><a href="https://bscscan.com/address/0xa5a5491bca93dd4c076e4906e79e7673f4a5a142"><code>0xa5a5491bca93dd4c076e4906e79e7673f4a5a142</code></a><br>(2-hop funder: <code>0xf70da97812cb96acdf810712aa562db8dfa3dbef</code> in tx <code>0x72d0a1e8...</code> at block <code>116978704</code>)</td>
+          <td><a href="https://bscscan.com/tx/0x9a2aad5e93baea6dbee144b4a9615172a6dd82eddd26007186436a39caa27639"><code>0x9a2aad5e93baea6dbee144b4a9615172a6dd82eddd26007186436a39caa27639</code></a></td>
+          <td>Block <code>132005597</code><br><code>2026-11-06 07:04:40 COT</code></td>
+          <td><code>0.000193009353538407 BNB</code><br>(<code>193009353538407</code> wei)</td>
+          <td><span class="badge-ok">Independent External Funder</span></td>
+        </tr>
+        <tr>
+          <td>3. <a href="https://bscscan.com/address/0x56b40205e0f8cd49eecb253ae82a5308f45a1cf3"><code>0x56b40205e0f8cd49eecb253ae82a5308f45a1cf3</code></a> (Tx #1)</td>
+          <td><code>100,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>4. <a href="https://bscscan.com/address/0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62"><code>0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62</code></a> (Tx #2)</td>
+          <td><code>25,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>5. <a href="https://bscscan.com/address/0x3aeae5f742e34f94db19b6c494072957633fa7ca"><code>0x3aeae5f742e34f94db19b6c494072957633fa7ca</code></a> (Tx #4)</td>
+          <td><code>25,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>6. <a href="https://bscscan.com/address/0x252dd866b4e34351d14d7239963979e0ef138765"><code>0x252dd866b4e34351d14d7239963979e0ef138765</code></a> (Tx #5)</td>
+          <td><code>25,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>7. <a href="https://bscscan.com/address/0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c"><code>0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c</code></a> (Tx #6)</td>
+          <td><code>25,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>8. <a href="https://bscscan.com/address/0xac958f0925a31a2c3844179ab62f12d480baa76d"><code>0xac958f0925a31a2c3844179ab62f12d480baa76d</code></a> (Tx #7, #8)</td>
+          <td><code>125,000</code><br>(100k + 25k)</td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>9. <a href="https://bscscan.com/address/0xee0821be193086fe6648b8051e39510ac95b358f"><code>0xee0821be193086fe6648b8051e39510ac95b358f</code></a> (Tx #9)</td>
+          <td><code>25,000</code></td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+        <tr>
+          <td>10. <a href="https://bscscan.com/address/0xa4c86f4e9d9ec8990f843aa49470083cece5f908"><code>0xa4c86f4e9d9ec8990f843aa49470083cece5f908</code></a> (Tx #10, #11)</td>
+          <td><code>550,000</code><br>(250k + 300k)</td>
+          <td>None (never received BNB; <code>balance = 0</code>, <code>nonce = 0</code>)</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><code>0 BNB</code></td>
+          <td><span class="badge-muted">Unfunded Fresh EOA</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4. Funder Grouping &amp; Distinct Operators Implied</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Funder Group</th>
+          <th>First BNB Funder Wallet</th>
+          <th>Grouped Recipients (2026-11-05 COT)</th>
+          <th>Linking First-Funder Tx Hash</th>
+          <th>Operator Attribution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Group A — Treasury-Funded Cluster</strong></td>
+          <td><a href="https://bscscan.com/address/0x7C34E9e21eE28A49Ff0b84B61774119E6633359f"><code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code></a> <strong>(FlapJax Treasury)</strong></td>
+          <td><code>0xfb200657f7266157a45dfcc6c09690726daa24e6</code> (received 25,000 FLAPJAX in tx <code>0x738d6ba5...</code>)</td>
+          <td><a href="https://bscscan.com/tx/0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7"><code>0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7</code></a> (Block <code>126835408</code>, <code>0.0005 BNB</code>)</td>
+          <td><strong>Same Operator as Treasury</strong> (recipient's very first BNB came directly from the FlapJax treasury wallet)</td>
+        </tr>
+        <tr>
+          <td><strong>Group B — Independent Funded Operator</strong></td>
+          <td><a href="https://bscscan.com/address/0xa5a5491bca93dd4c076e4906e79e7673f4a5a142"><code>0xa5a5491bca93dd4c076e4906e79e7673f4a5a142</code></a></td>
+          <td><code>0xa15c58e7008fc7a0331cfcc86a28af99fd21b93c</code> (received 25,000 FLAPJAX in tx <code>0x5ff4d0e5...</code>)</td>
+          <td><a href="https://bscscan.com/tx/0x9a2aad5e93baea6dbee144b4a9615172a6dd82eddd26007186436a39caa27639"><code>0x9a2aad5e93baea6dbee144b4a9615172a6dd82eddd26007186436a39caa27639</code></a> (Block <code>132005597</code>, <code>0.000193009353538407 BNB</code>)</td>
+          <td><strong>1 Independent External Operator</strong> (no overlap with Treasury or any other 11-05 recipient)</td>
+        </tr>
+        <tr>
+          <td><strong>Unfunded EOAs (8 Wallets)</strong></td>
+          <td>None (<code>0 BNB</code> ever received, <code>nonce = 0</code>)</td>
+          <td>
+            <code>0x56b40205e0f8cd49eecb253ae82a5308f45a1cf3</code> (100,000)<br>
+            <code>0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62</code> (25,000)<br>
+            <code>0x3aeae5f742e34f94db19b6c494072957633fa7ca</code> (25,000)<br>
+            <code>0x252dd866b4e34351d14d7239963979e0ef138765</code> (25,000)<br>
+            <code>0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c</code> (25,000)<br>
+            <code>0xac958f0925a31a2c3844179ab62f12d480baa76d</code> (125,000 across 2 txs)<br>
+            <code>0xee0821be193086fe6648b8051e39510ac95b358f</code> (25,000)<br>
+            <code>0xa4c86f4e9d9ec8990f843aa49470083cece5f908</code> (550,000 across 2 txs)
+          </td>
+          <td>No BNB funding transactions exist on-chain</td>
+          <td><strong>Up to 8 Unfunded Singletons</strong> (no on-chain BNB funder link; note that <code>0xac958f09...</code> and <code>0xa4c86f4e...</code> each received two payouts on 11-05 COT)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Summary of Implied Distinct Operators:</strong></p>
+    <ul>
+      <li><strong>Among BNB-funded recipients (2 of 10 wallets):</strong> <strong>2 distinct first-funder groups</strong> (1 linked directly to the FlapJax Treasury <code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code> via tx <code>0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7</code>, and 1 independent external funder <code>0xa5a5491bca93dd4c076e4906e79e7673f4a5a142</code> via tx <code>0x9a2aad5e93baea6dbee144b4a9615172a6dd82eddd26007186436a39caa27639</code>).</li>
+      <li><strong>Across all 10 recipients (treating each of the 8 zero-BNB EOAs as an unlinked singleton):</strong> <strong>10 total groups</strong>, which equates to <strong>9 non-treasury external operators + 1 treasury-seeded recipient</strong> (<code>0xfb200657f7266157a45dfcc6c09690726daa24e6</code>).</li>
+    </ul>
+  </div>
+
+  <h2>5. Deep-Dive Verification of Highlighted Uncovered Receipt &amp; Unexplained Transfers</h2>
+  <div class="card">
+    <p><strong>Highlighted Uncovered Receipt:</strong> <code>uncovered_tx=0x2d448c79b493547a58821305a4bc84e143146aa34a957762cb2909908693eb5d</code></p>
+    <ul>
+      <li><strong>Block Number:</strong> <code>131840640</code> (<code>0x7dbbabe</code>)</li>
+      <li><strong>Block Timestamp:</strong> <code>1793892435</code> &rarr; <code>2026-11-05T15:27:15.000Z</code> = <strong><code>2026-11-05 10:27:15 COT</code></strong></li>
+      <li><strong>From (Treasury):</strong> <code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code></li>
+      <li><strong>To (Recipient):</strong> <code>0xa4c86f4e9d9ec8990f843aa49470083cece5f908</code></li>
+      <li><strong>Amount Transferred:</strong> <code>300,000.000000000000000000 FLAPJAX</code> (raw data <code>0x0000000000000000000000000000000000000000000003f870857a3e0e380000</code> = <code>300000000000000000000000</code> base units)</li>
+      <li><strong>Recipient On-Chain Profile:</strong> Same recipient also received <code>250,000 FLAPJAX</code> 28 seconds earlier in block <code>131840577</code> (tx <code>0x6361dbfa0fe141a51fdabe0577b52d963b246f65bad8f929a3d46058af7d9ab7</code>) for a daily total of <code>550,000 FLAPJAX</code>. The wallet is an EOA (<code>eth_getCode = 0x</code>) with <code>0 BNB</code> balance and <code>0</code> outgoing transactions (never funded with BNB).</li>
+    </ul>
+    <p><strong>Transfers We Could Not Explain:</strong><br>
+    <strong>None (0 unexplained transfers).</strong> All 12 <code>Transfer</code> events emitted by <code>0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df</code> from sender <code>0x7C34E9e21eE28A49Ff0b84B61774119E6633359f</code> during <code>2026-11-05</code> COT are standard direct BEP-20 payouts of <code>25,000</code>, <code>100,000</code>, <code>250,000</code>, or <code>300,000</code> FLAPJAX to EOA recipient wallets.</p>
+  </div>
+</div>
+</body>
+</html>
